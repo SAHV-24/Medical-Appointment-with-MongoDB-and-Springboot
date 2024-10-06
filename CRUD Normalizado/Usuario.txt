@@ -1,0 +1,55 @@
+// INSERTAR datos en Usuario
+db.Usuario.insertMany([
+    {
+        cedula: 1001,
+        nombre: "Juan",
+        apellido: "Pérez",
+        telefono: 1234567890,
+        correo: "juan.perez@example.com",
+        fechaNacimiento: new Date("1990-01-01")
+    },
+    {
+        cedula: 1002,
+        nombre: "Ana",
+        apellido: "Gómez",
+        telefono: 9876543210,
+        correo: "ana.gomez@example.com",
+        fechaNacimiento: new Date("1985-05-12")
+    },
+    {
+        cedula: 1003,
+        nombre: "Carlos",
+        apellido: "López",
+        telefono: 1112223333,
+        correo: "carlos.lopez@example.com",
+        fechaNacimiento: new Date("1995-09-20")
+    },
+    {
+        cedula: 1004,
+        nombre: "Laura",
+        apellido: "Martínez",
+        telefono: 2223334444,
+        correo: "laura.martinez@example.com",
+        fechaNacimiento: new Date("1992-11-30")
+    },
+    {
+        cedula: 1005,
+        nombre: "David",
+        apellido: "Torres",
+        telefono: 3334445555,
+        correo: "david.torres@example.com",
+        fechaNacimiento: new Date("1980-03-15")
+    }
+]);
+
+// LEER datos de Usuario
+db.Usuario.find().pretty();
+
+// ACTUALIZAR un dato en Usuario
+db.Usuario.updateOne(
+    { cedula: 1001 },
+    { $set: { telefono: 9998887777 } }
+);
+
+// ELIMINAR un documento en Usuario
+db.Usuario.deleteOne({ cedula: 1005 });

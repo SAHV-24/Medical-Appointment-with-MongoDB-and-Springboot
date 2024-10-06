@@ -1,0 +1,45 @@
+/ INSERTAR datos en Orden
+db.Orden.insertMany([
+    {
+        ordenId: 1,
+        citaId: 1,
+        titulo: "Examen de Sangre",
+        fechaExpiracion: new Date("2024-10-20")
+    },
+    {
+        ordenId: 2,
+        citaId: 2,
+        titulo: "Radiografía",
+        fechaExpiracion: new Date("2024-10-25")
+    },
+    {
+        ordenId: 3,
+        citaId: 3,
+        titulo: "Electrocardiograma",
+        fechaExpiracion: new Date("2024-10-30")
+    },
+    {
+        ordenId: 4,
+        citaId: 4,
+        titulo: "Tomografía",
+        fechaExpiracion: new Date("2024-11-05")
+    },
+    {
+        ordenId: 5,
+        citaId: 1,
+        titulo: "Ultrasonido",
+        fechaExpiracion: new Date("2024-11-10")
+    }
+]);
+
+// LEER datos de Orden
+db.Orden.find().pretty();
+
+// ACTUALIZAR un dato en Orden
+db.Orden.updateOne(
+    { ordenId: 1 },
+    { $set: { titulo: "Examen de Sangre Completo" } }
+);
+
+// ELIMINAR un documento en Orden
+db.Orden.deleteOne({ ordenId: 5 });

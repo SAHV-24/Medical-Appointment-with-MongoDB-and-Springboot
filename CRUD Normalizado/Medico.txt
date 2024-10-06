@@ -1,0 +1,60 @@
+// INSERTAR datos en Medico
+db.Medico.insertMany([
+    {
+        cedula: 2001,
+        nombre: "Dr. Luis",
+        apellido: "Ramírez",
+        telefono: 1231231234,
+        correo: "luis.ramirez@hospital.com",
+        estado: "Activo",
+        especialidad: "Cardiología"
+    },
+    {
+        cedula: 2002,
+        nombre: "Dra. Sofía",
+        apellido: "Hernández",
+        telefono: 4564564567,
+        correo: "sofia.hernandez@hospital.com",
+        estado: "Activo",
+        especialidad: "Dermatología"
+    },
+    {
+        cedula: 2003,
+        nombre: "Dr. Mario",
+        apellido: "García",
+        telefono: 7897897890,
+        correo: "mario.garcia@hospital.com",
+        estado: "Activo",
+        especialidad: "Neurología"
+    },
+    {
+        cedula: 2004,
+        nombre: "Dra. Elena",
+        apellido: "Vargas",
+        telefono: 3213213210,
+        correo: "elena.vargas@hospital.com",
+        estado: "Inactivo",
+        especialidad: "Pediatría"
+    },
+    {
+        cedula: 2005,
+        nombre: "Dr. Miguel",
+        apellido: "Santos",
+        telefono: 6546546543,
+        correo: "miguel.santos@hospital.com",
+        estado: "Activo",
+        especialidad: "Ginecología"
+    }
+]);
+
+// LEER datos de Medico
+db.Medico.find().pretty();
+
+// ACTUALIZAR un dato en Medico
+db.Medico.updateOne(
+    { cedula: 2004 },
+    { $set: { estado: "Activo" } }
+);
+
+// ELIMINAR un documento en Medico
+db.Medico.deleteOne({ cedula: 2005 });
