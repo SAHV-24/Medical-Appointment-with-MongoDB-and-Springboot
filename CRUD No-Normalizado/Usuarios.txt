@@ -1,46 +1,17 @@
 // INSERTAR datos en Usuarios
-db.Usuarios.insertMany([
-    {
-        cedula: 1001,
-        nombre: "Juan",
-        apellido: "Pérez",
-        telefono: 1234567890,
-        correo: "juan.perez@example.com",
-        fechaNacimiento: new Date("1990-01-01")
-    },
-    {
-        cedula: 1002,
-        nombre: "Ana",
-        apellido: "Gómez",
-        telefono: 9876543210,
-        correo: "ana.gomez@example.com",
-        fechaNacimiento: new Date("1985-05-12")
-    },
-    {
-        cedula: 1003,
-        nombre: "Carlos",
-        apellido: "López",
-        telefono: 1112223333,
-        correo: "carlos.lopez@example.com",
-        fechaNacimiento: new Date("1995-09-20")
-    },
-    {
-        cedula: 1004,
-        nombre: "Laura",
-        apellido: "Martínez",
-        telefono: 2223334444,
-        correo: "laura.martinez@example.com",
-        fechaNacimiento: new Date("1992-11-30")
-    },
-    {
-        cedula: 1005,
-        nombre: "David",
-        apellido: "Torres",
-        telefono: 3334445555,
-        correo: "david.torres@example.com",
-        fechaNacimiento: new Date("1980-03-15")
-    }
+db.Usuario.insertMany([
+    { cedula: 1001, nombre: "Juan", apellido: "Pérez", telefono: 1234567890, correo: "juan.perez@example.com", fechaNacimiento: new Date("1990-01-01") },
+    { cedula: 1002, nombre: "Ana", apellido: "Gómez", telefono: 9876543210, correo: "ana.gomez@example.com", fechaNacimiento: new Date("1985-05-12") },
+    { cedula: 1003, nombre: "Carlos", apellido: "López", telefono: 1112223333, correo: "carlos.lopez@example.com", fechaNacimiento: new Date("1995-09-20") },
+    { cedula: 1004, nombre: "Laura", apellido: "Martínez", telefono: 2223334444, correo: "laura.martinez@example.com", fechaNacimiento: new Date("1992-11-30") },
+    { cedula: 1005, nombre: "David", apellido: "Torres", telefono: 3334445555, correo: "david.torres@example.com", fechaNacimiento: new Date("1980-03-15") },
+    { cedula: 1006, nombre: "Sofía", apellido: "Méndez", telefono: 5556667777, correo: "sofia.mendez@example.com", fechaNacimiento: new Date("1987-07-25") },
+    { cedula: 1007, nombre: "José", apellido: "Alvarez", telefono: 6667778888, correo: "jose.alvarez@example.com", fechaNacimiento: new Date("1993-04-18") },
+    { cedula: 1008, nombre: "María", apellido: "Sánchez", telefono: 7778889999, correo: "maria.sanchez@example.com", fechaNacimiento: new Date("1991-02-28") },
+    { cedula: 1009, nombre: "Luis", apellido: "Ortiz", telefono: 8889990000, correo: "luis.ortiz@example.com", fechaNacimiento: new Date("1994-08-10") },
+    { cedula: 1010, nombre: "Carolina", apellido: "Fernández", telefono: 9990001111, correo: "carolina.fernandez@example.com", fechaNacimiento: new Date("1989-12-05") }
 ]);
+
 
 // LEER datos de Usuarios
 db.Usuarios.find().pretty();

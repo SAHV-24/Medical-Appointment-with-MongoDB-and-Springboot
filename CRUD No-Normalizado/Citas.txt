@@ -18,7 +18,9 @@ db.Citas.insertMany([
         fechaYHora: new Date("2024-10-06T10:30:00"),
         consultorio: "202",
         estado: "Confirmada",
-        ordenes: []
+        ordenes: [
+            { titulo: "Radiografía", fechaExpiracion: new Date("2024-10-25") }
+        ]
     },
     {
         citaId: 3,
@@ -27,7 +29,9 @@ db.Citas.insertMany([
         fechaYHora: new Date("2024-10-07T11:00:00"),
         consultorio: "303",
         estado: "Pendiente",
-        ordenes: []
+        ordenes: [
+            { titulo: "Electrocardiograma", fechaExpiracion: new Date("2024-10-30") }
+        ]
     },
     {
         citaId: 4,
@@ -37,19 +41,77 @@ db.Citas.insertMany([
         consultorio: "404",
         estado: "Pendiente",
         ordenes: [
-            { titulo: "Radiografía", fechaExpiracion: new Date("2024-10-25") }
+            { titulo: "Tomografía", fechaExpiracion: new Date("2024-11-05") }
         ]
     },
     {
         citaId: 5,
-        usuarioId: 1001,
+        usuarioId: 1005,
         medicoId: 2005,
         fechaYHora: new Date("2024-10-09T13:30:00"),
         consultorio: "505",
         estado: "Confirmada",
-        ordenes: []
+        ordenes: [
+            { titulo: "Ultrasonido", fechaExpiracion: new Date("2024-11-10") }
+        ]
+    },
+    {
+        citaId: 6,
+        usuarioId: 1001,
+        medicoId: 2006,
+        fechaYHora: new Date("2024-10-10T14:00:00"),
+        consultorio: "606",
+        estado: "Pendiente",
+        ordenes: [
+            { titulo: "Prueba de Esfuerzo", fechaExpiracion: new Date("2024-11-15") }
+        ]
+    },
+    {
+        citaId: 7,
+        usuarioId: 1007,
+        medicoId: 2007,
+        fechaYHora: new Date("2024-10-11T15:30:00"),
+        consultorio: "707",
+        estado: "Pendiente",
+        ordenes: [
+            { titulo: "Ecocardiograma", fechaExpiracion: new Date("2024-11-20") }
+        ]
+    },
+    {
+        citaId: 8,
+        usuarioId: 1008,
+        medicoId: 2010,
+        fechaYHora: new Date("2024-10-11T15:30:00"),
+        consultorio: "707",
+        estado: "Pendiente",
+        ordenes: [
+            { titulo: "Ecocardiograma", fechaExpiracion: new Date("2024-11-20") }
+        ]
+    },
+    {
+        citaId: 9,
+        usuarioId: 1009,
+        medicoId: 2008,
+        fechaYHora: new Date("2024-10-11T15:30:00"),
+        consultorio: "707",
+        estado: "Pendiente",
+        ordenes: [
+            { titulo: "Ecocardiograma", fechaExpiracion: new Date("2024-12-20") }
+        ]
+    },
+    {
+        citaId: 10,
+        usuarioId: 1010,
+        medicoId: 2009,
+        fechaYHora: new Date("2024-10-11T15:30:00"),
+        consultorio: "707",
+        estado: "Pendiente",
+        ordenes: [
+            { titulo: "Ecocardiograma", fechaExpiracion: new Date("2024-11-23") }
+        ]
     }
 ]);
+
 
 // LEER datos de Citas
 db.Citas.find().pretty();

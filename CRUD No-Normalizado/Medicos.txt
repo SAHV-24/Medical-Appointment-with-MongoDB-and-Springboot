@@ -1,50 +1,15 @@
 // INSERTAR datos en Medicos
-db.Medicos.insertMany([
-    {
-        cedula: 2001,
-        nombre: "Dr. Luis",
-        apellido: "Ramírez",
-        telefono: 1231231234,
-        correo: "luis.ramirez@hospital.com",
-        estado: "Activo",
-        especialidad: "Cardiología"
-    },
-    {
-        cedula: 2002,
-        nombre: "Dra. Sofía",
-        apellido: "Hernández",
-        telefono: 4564564567,
-        correo: "sofia.hernandez@hospital.com",
-        estado: "Activo",
-        especialidad: "Dermatología"
-    },
-    {
-        cedula: 2003,
-        nombre: "Dr. Mario",
-        apellido: "García",
-        telefono: 7897897890,
-        correo: "mario.garcia@hospital.com",
-        estado: "Activo",
-        especialidad: "Neurología"
-    },
-    {
-        cedula: 2004,
-        nombre: "Dra. Elena",
-        apellido: "Vargas",
-        telefono: 3213213210,
-        correo: "elena.vargas@hospital.com",
-        estado: "Inactivo",
-        especialidad: "Pediatría"
-    },
-    {
-        cedula: 2005,
-        nombre: "Dr. Miguel",
-        apellido: "Santos",
-        telefono: 6546546543,
-        correo: "miguel.santos@hospital.com",
-        estado: "Activo",
-        especialidad: "Ginecología"
-    }
+db.Medico.insertMany([
+    { cedula: 2001, nombre: "Dr. Luis", apellido: "Ramírez", telefono: 1231231234, correo: "luis.ramirez@hospital.com", estado: "Activo", especialidad: "Cardiología" },
+    { cedula: 2002, nombre: "Dra. Sofía", apellido: "Hernández", telefono: 4564564567, correo: "sofia.hernandez@hospital.com", estado: "Activo", especialidad: "Dermatología" },
+    { cedula: 2003, nombre: "Dr. Mario", apellido: "García", telefono: 7897897890, correo: "mario.garcia@hospital.com", estado: "Activo", especialidad: "Neurología" },
+    { cedula: 2004, nombre: "Dra. Elena", apellido: "Vargas", telefono: 3213213210, correo: "elena.vargas@hospital.com", estado: "Inactivo", especialidad: "Pediatría" },
+    { cedula: 2005, nombre: "Dr. Miguel", apellido: "Santos", telefono: 6546546543, correo: "miguel.santos@hospital.com", estado: "Activo", especialidad: "Ginecología" },
+    { cedula: 2006, nombre: "Dr. Andrea", apellido: "Blanco", telefono: 5555555555, correo: "andrea.blanco@hospital.com", estado: "Activo", especialidad: "Psiquiatría" },
+    { cedula: 2007, nombre: "Dr. Raúl", apellido: "Mejía", telefono: 6666666666, correo: "raul.mejia@hospital.com", estado: "Activo", especialidad: "Oncología" },
+    { cedula: 2008, nombre: "Dra. Carla", apellido: "Guzmán", telefono: 7777777777, correo: "carla.guzman@hospital.com", estado: "Activo", especialidad: "Oftalmología" },
+    { cedula: 2009, nombre: "Dr. Fernando", apellido: "Díaz", telefono: 8888888888, correo: "fernando.diaz@hospital.com", estado: "Activo", especialidad: "Nefrología" },
+    { cedula: 2010, nombre: "Dra. Mariana", apellido: "Silva", telefono: 9999999999, correo: "mariana.silva@hospital.com", estado: "Activo", especialidad: "Reumatología" }
 ]);
 
 // LEER datos de Medicos
