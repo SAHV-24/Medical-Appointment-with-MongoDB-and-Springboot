@@ -3,8 +3,11 @@ package com.pauldirac.CrudNeo4J.MongoDB.Model;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,7 +19,12 @@ import lombok.NoArgsConstructor;
 @Data
 public class UsuarioModel {
     @Id
-    private String id;
+    private ObjectId _id;
+
+    @JsonProperty("_id")
+    public String getIdAsString() {
+        return _id != null ? _id.toHexString() : "";
+    }
 
     private Long cedula;
     private String nombre;

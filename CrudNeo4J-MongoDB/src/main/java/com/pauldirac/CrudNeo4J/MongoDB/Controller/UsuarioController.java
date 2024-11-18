@@ -1,0 +1,46 @@
+package com.pauldirac.CrudNeo4J.MongoDB.Controller;
+
+import com.pauldirac.CrudNeo4J.MongoDB.Model.UsuarioModel;
+import com.pauldirac.CrudNeo4J.MongoDB.Service.IUsuarioService;
+import org.bson.types.ObjectId;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/api/Usuarios")
+public class UsuarioController {
+
+    @Autowired
+    private IUsuarioService usuarioService;
+
+    // Crear un nuevo usuario
+    @PostMapping
+    public ResponseEntity<String> crearUsuario(@RequestBody UsuarioModel usuario) {
+        String resultado = usuarioService.crearUsuario(usuario);
+        return ResponseEntity.ok(resultado);
+    }
+
+    // Obtener un usuario por ID
+    @GetMapping("/{id}")
+    public ResponseEntity<UsuarioModel> obtenerUsuario(@PathVariable("id") ObjectId id) {
+        UsuarioModel usuario = usuarioService.obtenerUsuario(id);
+        return ResponseEntity.ok(usuario);
+    }
+
+    // Eliminar un usuario por ID
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> eliminarUsuario(@PathVariable("id") ObjectId id) {
+        String resultado = usuarioService.eliminarUsuario(id);
+        return ResponseEntity.ok(resultado);
+    }
+
+    // Actualizar un usuario por ID
+    @PutMapping("/{id}")
+    public ResponseEntity<String> actualizarUsuario(
+            @PathVariable("id") ObjectId id,
+            @RequestBody UsuarioModel nuevoUsuario) {
+        String resultado = usuarioService.actualizarUsuario(id, nuevoUsuario);
+        return ResponseEntity.ok(resultado);
+    }
+}
