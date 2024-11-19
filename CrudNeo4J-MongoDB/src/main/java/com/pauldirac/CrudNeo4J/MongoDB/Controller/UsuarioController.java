@@ -48,18 +48,18 @@ public class UsuarioController {
     }
 
     // Buscar usuarios mayores de 65 años por EPS
-    @GetMapping("/mayores")
-    public ResponseEntity<List<UsuarioModel>> buscarPorEpsMayores65(@RequestParam String eps) {
+    @GetMapping("/mayores/{eps}")
+    public ResponseEntity<List<UsuarioModel>> buscarPorEpsMayores65(@PathVariable("eps") String eps) {
         List<UsuarioModel> usuarios = usuarioService.buscarPorEpsMayores65(eps);
         return ResponseEntity.ok(usuarios);
     }
 
     // Buscar usuarios por rango de edad y EPS
-    @GetMapping("/rango-edad")
+    @GetMapping("/rango-edad/{edadMinima}/{edadMaxima}/{eps}")
     public ResponseEntity<List<UsuarioModel>> buscarPorRangoEdadYEps(
-            @RequestParam int edadMinima,
-            @RequestParam int edadMaxima,
-            @RequestParam String eps) {
+            @PathVariable("edadMinima") int edadMinima,
+            @PathVariable("edadMaxima") int edadMaxima,
+            @PathVariable("eps") String eps) {
         List<UsuarioModel> usuarios = usuarioService.buscarPorRangoEdadYEps(edadMinima, edadMaxima, eps);
         return ResponseEntity.ok(usuarios);
     }
@@ -67,8 +67,8 @@ public class UsuarioController {
     // Actualizar prioridad de pacientes mayores con condiciones especiales
     @PutMapping("/prioridad")
     public ResponseEntity<String> actualizarPrioridadPacientesMayores(@RequestBody List<String> condicionesEspeciales) {
-        usuarioService.actualizarPrioridadPacientesMayores(condicionesEspeciales);
-        return ResponseEntity.ok("Prioridades actualizadas correctamente");
+        
+        return ResponseEntity.ok(usuarioService.actualizarPrioridadPacientesMayores(condicionesEspeciales));
     }
 
 }

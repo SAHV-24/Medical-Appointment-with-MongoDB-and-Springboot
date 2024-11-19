@@ -18,7 +18,7 @@ public interface IUsuarioService {
 
     List<UsuarioModel> buscarPorRangoEdadYEps(int edadMinima, int edadMaxima, String eps);
 
-    void actualizarPrioridadPacientesMayores(List<String> condicionesEspeciales);
+    String actualizarPrioridadPacientesMayores(List<String> condicionesEspeciales);
 
     List<UsuarioModel> buscarPorEpsMayores65(String eps);
 

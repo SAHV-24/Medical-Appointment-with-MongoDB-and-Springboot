@@ -1,5 +1,6 @@
 package com.pauldirac.CrudNeo4J.MongoDB.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.bson.types.ObjectId;
@@ -61,7 +62,7 @@ public class UsuarioService implements IUsuarioService {
             usuarioExistente.setCondicionesEspeciales(nuevoUsuario.getCondicionesEspeciales());
             usuarioExistente.setCorreo(nuevoUsuario.getCorreo());
             usuarioExistente.setEps(nuevoUsuario.getEps());
-            usuarioExistente.setFechaNacimiento(usuarioExistente.getFechaNacimiento());
+            usuarioExistente.setEdad(usuarioExistente.getEdad());
             usuarioExistente.setTelefono(nuevoUsuario.getTelefono());
 
             usuarioRepository.save(usuarioExistente);
@@ -84,12 +85,19 @@ public class UsuarioService implements IUsuarioService {
     }
 
     @Override
-    public void actualizarPrioridadPacientesMayores(List<String> condicionesEspeciales) {
+    public String actualizarPrioridadPacientesMayores(List<String> condicionesEspeciales) {
         List<UsuarioModel> pacientes = usuarioRepository.findPacientesMayoresConCondiciones(condicionesEspeciales);
 
+        List<String> resultados = new ArrayList<>();
         for (UsuarioModel usuario : pacientes) {
-            usuario.setPrioridad("Alta");
-            usuarioRepository.save(usuario);
+            if (!usuario.getPrioridad().equals("Alta")) {
+                usuario.setPrioridad("Alta");
+                usuarioRepository.save(usuario);
+                resultados.add(usuario.getNombre());
+            }
         }
+
+        return resultados.size() > 0 ? "Los usuarios que fueron actualizados fueron: \n " + resultados.toString()
+                : "Ningún usuario fue actualizado";
     }
 }

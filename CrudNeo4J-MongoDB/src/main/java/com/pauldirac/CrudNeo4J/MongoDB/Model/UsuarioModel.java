@@ -1,6 +1,5 @@
 package com.pauldirac.CrudNeo4J.MongoDB.Model;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import org.bson.types.ObjectId;
@@ -32,7 +31,7 @@ public class UsuarioModel {
     private String apellido;
     private Long telefono;
     private String correo;
-    private LocalDate fechaNacimiento;
+    private Integer edad;
     private String eps;
     private List<String> condicionesEspeciales;
 }
