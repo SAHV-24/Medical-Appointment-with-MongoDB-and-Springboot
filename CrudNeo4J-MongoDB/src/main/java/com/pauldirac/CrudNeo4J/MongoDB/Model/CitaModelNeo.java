@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
-@Node
+@Node("Cita")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -31,7 +31,7 @@ public class CitaModelNeo {
     private UsuarioModelNeo usuario;
 
     @Relationship(type = "Atiende", direction = Relationship.Direction.OUTGOING)
-    private UsuarioModelNeo doctor;
+    private DoctorModelNeo doctor;
 
 }
 
