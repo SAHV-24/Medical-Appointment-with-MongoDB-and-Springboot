@@ -1,34 +1,32 @@
 package com.pauldirac.CrudNeo4J.MongoDB.Model;
-
-import org.springframework.data.neo4j.core.schema.GeneratedValue;
-import org.springframework.data.neo4j.core.schema.Id;
-import org.springframework.data.neo4j.core.schema.Node;
-
-import com.pauldirac.CrudNeo4J.MongoDB.DTO.Orden;
-
+import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.format.annotation.DateTimeFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import java.util.Date;
 
-import java.time.LocalDateTime;
-import java.util.List;
-
-@Node("Cita")
+@Document(collection = "Citas")
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class CitaModel {
 
     @Id
-    @GeneratedValue 
-    private Long citaId;
+    private ObjectId _id;    
 
-    private String prioridad;
-    private LocalDateTime fechaYHora;
-    private String consultorio;
+    private String prioridad;    
+    private Long citaId;    
+    private Long usuarioId;    
+    private Long medicoId;    
+
+  
+    private Date fechaYHora;    
+    
+    private String consultorio;    
     private String estado;
-    private List<Orden> ordenes;
 
 }
-
     

@@ -27,6 +27,7 @@ public class UsuarioModel {
     }
 
     private Long cedula;
+    private String prioridad;
     private String nombre;
     private String apellido;
     private Long telefono;

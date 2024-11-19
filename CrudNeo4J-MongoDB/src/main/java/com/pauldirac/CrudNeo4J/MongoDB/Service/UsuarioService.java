@@ -1,5 +1,7 @@
 package com.pauldirac.CrudNeo4J.MongoDB.Service;
 
+import java.util.List;
+
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -67,6 +69,27 @@ public class UsuarioService implements IUsuarioService {
             return "Usuario actualizado con éxito. ID: " + usuarioId;
         } catch (Exception e) {
             return "Error al actualizar el usuario: " + e.getMessage();
+        }
+    }
+
+    @Override
+    public List<UsuarioModel> buscarPorEpsMayores65(String eps) {
+        return usuarioRepository.findByEpsAndMayores65(eps);
+    }
+
+    @Override
+    public List<UsuarioModel> buscarPorRangoEdadYEps(int edadMinima, int edadMaxima, String eps) {
+        List<UsuarioModel> usuarios = usuarioRepository.findByRangoEdadAndEps(edadMinima, edadMaxima, eps);
+        return usuarios;
+    }
+
+    @Override
+    public void actualizarPrioridadPacientesMayores(List<String> condicionesEspeciales) {
+        List<UsuarioModel> pacientes = usuarioRepository.findPacientesMayoresConCondiciones(condicionesEspeciales);
+
+        for (UsuarioModel usuario : pacientes) {
+            usuario.setPrioridad("Alta");
+            usuarioRepository.save(usuario);
         }
     }
 }

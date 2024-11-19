@@ -2,6 +2,9 @@ package com.pauldirac.CrudNeo4J.MongoDB.Controller;
 
 import com.pauldirac.CrudNeo4J.MongoDB.Model.UsuarioModel;
 import com.pauldirac.CrudNeo4J.MongoDB.Service.IUsuarioService;
+
+import java.util.List;
+
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +18,7 @@ public class UsuarioController {
     private IUsuarioService usuarioService;
 
     // Crear un nuevo usuario
-    @PostMapping
+    @PostMapping("/")
     public ResponseEntity<String> crearUsuario(@RequestBody UsuarioModel usuario) {
         String resultado = usuarioService.crearUsuario(usuario);
         return ResponseEntity.ok(resultado);
@@ -43,4 +46,29 @@ public class UsuarioController {
         String resultado = usuarioService.actualizarUsuario(id, nuevoUsuario);
         return ResponseEntity.ok(resultado);
     }
+
+    // Buscar usuarios mayores de 65 años por EPS
+    @GetMapping("/mayores")
+    public ResponseEntity<List<UsuarioModel>> buscarPorEpsMayores65(@RequestParam String eps) {
+        List<UsuarioModel> usuarios = usuarioService.buscarPorEpsMayores65(eps);
+        return ResponseEntity.ok(usuarios);
+    }
+
+    // Buscar usuarios por rango de edad y EPS
+    @GetMapping("/rango-edad")
+    public ResponseEntity<List<UsuarioModel>> buscarPorRangoEdadYEps(
+            @RequestParam int edadMinima,
+            @RequestParam int edadMaxima,
+            @RequestParam String eps) {
+        List<UsuarioModel> usuarios = usuarioService.buscarPorRangoEdadYEps(edadMinima, edadMaxima, eps);
+        return ResponseEntity.ok(usuarios);
+    }
+
+    // Actualizar prioridad de pacientes mayores con condiciones especiales
+    @PutMapping("/prioridad")
+    public ResponseEntity<String> actualizarPrioridadPacientesMayores(@RequestBody List<String> condicionesEspeciales) {
+        usuarioService.actualizarPrioridadPacientesMayores(condicionesEspeciales);
+        return ResponseEntity.ok("Prioridades actualizadas correctamente");
+    }
+
 }

@@ -15,7 +15,6 @@ public class MedicoModel {
 
     @Id
     private String id;
-
     private Long cedula;
     private String nombre;
     private String apellido;
