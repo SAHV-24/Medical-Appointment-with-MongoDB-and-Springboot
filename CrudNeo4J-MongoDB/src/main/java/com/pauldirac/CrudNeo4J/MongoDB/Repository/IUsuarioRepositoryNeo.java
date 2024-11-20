@@ -7,7 +7,7 @@ import org.springframework.data.neo4j.repository.query.Query;
 import java.util.List;
 import java.util.Optional;
 
-public interface IUsuarioRepositoryNeo extends Neo4jRepository<UsuarioModelNeo, String> {
+public interface IUsuarioRepositoryNeo extends Neo4jRepository<UsuarioModelNeo, Long> {
 
     Optional<List<UsuarioModelNeo>> findUsuarioModelNeoByEdadBetweenAndEps(Integer min, Integer max, String eps);
 
