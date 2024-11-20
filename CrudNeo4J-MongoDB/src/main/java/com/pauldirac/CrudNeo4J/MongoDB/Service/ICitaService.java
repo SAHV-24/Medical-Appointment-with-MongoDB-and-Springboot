@@ -8,7 +8,7 @@ import java.util.Optional;
 import org.bson.types.ObjectId;
 import org.springframework.stereotype.Service;
 
-@Service
+
 public interface ICitaService {
     List<CitaModel> obtenerTodas();
     Optional<CitaModel> obtenerPorId(ObjectId id);
