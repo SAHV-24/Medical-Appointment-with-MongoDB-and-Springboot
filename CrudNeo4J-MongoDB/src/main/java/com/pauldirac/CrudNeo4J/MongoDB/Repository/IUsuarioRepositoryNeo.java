@@ -13,8 +13,8 @@ public interface IUsuarioRepositoryNeo extends Neo4jRepository<UsuarioModelNeo, 
 
     @Query("MATCH (u:Usuario)-[:Tiene]->(c:Cita) " +
             "WHERE u.edad > 65 AND any(condicion IN u.condicionesEspeciales WHERE toLower(condicion) IN ['hipertensión', 'diabetes', 'cáncer']) " +
-            "SET c.prioridad = 'Alta'")
-    void cambiarPrioridadCita();
+            "SET c.prioridad = 'Alta' RETURN u")
+    Optional<List<UsuarioModelNeo>> cambiarPrioridadCita();
 
     Optional<List<UsuarioModelNeo>> findByEdadGreaterThanAndEps(Integer edad, String eps);
 

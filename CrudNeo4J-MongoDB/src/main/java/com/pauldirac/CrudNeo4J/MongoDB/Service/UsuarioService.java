@@ -15,7 +15,7 @@ import com.pauldirac.CrudNeo4J.MongoDB.Repository.IUsuarioRepository;
 public class UsuarioService implements IUsuarioService {
 
     @Autowired
-    private IUsuarioRepository usuarioRepository; // Suponiendo que tienes un repositorio JPA para manejar UsuarioModel
+    private IUsuarioRepository usuarioRepository;
 
     @Override
     public String crearUsuario(UsuarioModel usuario) {
