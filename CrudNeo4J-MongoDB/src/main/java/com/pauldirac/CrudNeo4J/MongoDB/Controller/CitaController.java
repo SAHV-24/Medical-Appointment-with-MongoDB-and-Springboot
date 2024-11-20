@@ -18,7 +18,6 @@ import com.pauldirac.CrudNeo4J.MongoDB.Service.ICitaService;
 
 @RestController
 @RequestMapping("/api/Citas")
-@CrossOrigin(origins = "*")
 public class CitaController {
 
     @Autowired
