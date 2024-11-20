@@ -31,7 +31,7 @@ public class CitaModelNeo {
     private UsuarioModelNeo usuario;
 
     @Relationship(type = "Atiende", direction = Relationship.Direction.OUTGOING)
-    private DoctorModelNeo doctor;
+    private MedicoModelNeo doctor;
 
 }
 

@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class DoctorModelNeo {
+public class MedicoModelNeo {
 
     @Id
     private Long cedula;
