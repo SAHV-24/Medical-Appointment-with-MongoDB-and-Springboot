@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("api/Citas/neo")
 public class CitaControllerNeo {
@@ -16,6 +18,13 @@ public class CitaControllerNeo {
     @Autowired
     public CitaControllerNeo(ICitaServiceNeo citaService) {
         this.citaService = citaService;
+    }
+
+    @GetMapping("/")
+    public ResponseEntity<List<CitaModelNeo>> obtenerTodas() {
+
+        return new ResponseEntity<>(citaService.obtenerTodas(), HttpStatus.OK);
+
     }
 
     @GetMapping("/{id}")
