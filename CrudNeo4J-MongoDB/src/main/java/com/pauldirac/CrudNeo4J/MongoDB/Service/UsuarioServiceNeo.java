@@ -100,7 +100,7 @@ public class UsuarioServiceNeo implements IUsuarioServiceNeo {
             }
         }
 
-        return !resultados.isEmpty() ? "Los usuarios que fueron actualizados fueron: \n " + resultados.toString()
+        return !resultados.isEmpty() ? "Los usuarios que fueron actualizados fueron: \n " + resultados
                 : "Ningún usuario fue actualizado";
     }
 
