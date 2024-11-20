@@ -6,7 +6,6 @@ import com.pauldirac.CrudNeo4J.MongoDB.Repository.IUsuarioRepositoryNeo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -96,7 +95,20 @@ public class UsuarioServiceNeo implements IUsuarioServiceNeo {
 
         List<UsuarioModelNeo> pacientes = usuarioRepository.cambiarPrioridadCita().orElseThrow(() -> new RuntimeException("No se encontraron pacientes"));
 
-        return "Prioridad actualizada con éxito";
+        StringBuilder respuesta = new StringBuilder();
+
+        if(!pacientes.isEmpty()) {
+
+            for(UsuarioModelNeo u : pacientes) {
+
+                String cadena = "\n----------------------------\nNombre: " + u.getNombre() + ", edad: " + u.getEdad() + ", presenta: " + u.getCondicionesEspeciales() + "\n----------------------------\n";
+                respuesta.append(cadena);
+
+            }
+
+        }
+
+        return "Se actualizaron las citas de los siguientes pacientes: \n" + respuesta;
 
     }
 
