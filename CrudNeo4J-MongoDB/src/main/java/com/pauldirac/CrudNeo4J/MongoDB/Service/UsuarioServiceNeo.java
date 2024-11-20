@@ -19,6 +19,10 @@ public class UsuarioServiceNeo implements IUsuarioServiceNeo {
         this.usuarioRepository = usuarioRepository;
     }
 
+    public List<UsuarioModelNeo> obtenerTodos() {
+        return usuarioRepository.findAll();
+    }
+
     public String crearUsuario(UsuarioModelNeo usuario) {
 
         try {
@@ -89,19 +93,11 @@ public class UsuarioServiceNeo implements IUsuarioServiceNeo {
     }
 
     public String actualizarPrioridadPacientesMayores() {
+
         List<UsuarioModelNeo> pacientes = usuarioRepository.cambiarPrioridadCita().orElseThrow(() -> new RuntimeException("No se encontraron pacientes"));
 
-        List<String> resultados = new ArrayList<>();
-        for (UsuarioModelNeo usuario : pacientes) {
-            if (!usuario.getPrioridad().equals("Alta")) {
-                usuario.setPrioridad("Alta");
-                usuarioRepository.save(usuario);
-                resultados.add(usuario.getNombre());
-            }
-        }
+        return "Prioridad actualizada con éxito";
 
-        return !resultados.isEmpty() ? "Los usuarios que fueron actualizados fueron: \n " + resultados
-                : "Ningún usuario fue actualizado";
     }
 
 }

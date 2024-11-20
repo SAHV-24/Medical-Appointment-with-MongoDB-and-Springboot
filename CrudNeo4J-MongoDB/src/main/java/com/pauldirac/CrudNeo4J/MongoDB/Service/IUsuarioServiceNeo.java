@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface IUsuarioServiceNeo {
 
+    List<UsuarioModelNeo> obtenerTodos();
+
     String crearUsuario(UsuarioModelNeo usuario);
 
     UsuarioModelNeo obtenerUsuario(Long usuarioId);

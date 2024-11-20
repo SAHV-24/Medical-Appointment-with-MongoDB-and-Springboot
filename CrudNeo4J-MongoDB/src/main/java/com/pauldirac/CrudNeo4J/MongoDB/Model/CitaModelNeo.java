@@ -8,7 +8,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.OffsetDateTime;
+import java.time.ZonedDateTime;
 
 @Node("Cita")
 @Data
@@ -23,15 +24,9 @@ public class CitaModelNeo {
     private Long medicoId;
 
     private String prioridad;
-    private Date fechaYHora;
+    private ZonedDateTime fechaYHora;
     private String consultorio;
     private String estado;
-
-    @Relationship(type = "Tiene", direction = Relationship.Direction.INCOMING)
-    private UsuarioModelNeo usuario;
-
-    @Relationship(type = "Atiende", direction = Relationship.Direction.OUTGOING)
-    private MedicoModelNeo doctor;
 
 }
 

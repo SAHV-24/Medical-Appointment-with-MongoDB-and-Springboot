@@ -43,13 +43,11 @@ public class CitaServiceNeo implements ICitaServiceNeo {
         CitaModelNeo citaRecuperada = repositoryNeo.findById(id).orElseThrow(() -> new RuntimeException(String.format("La cita con id \"%d\" no se encuentra en la base de datos", id)));
 
         citaRecuperada.setCitaId(cita.getCitaId());
-        citaRecuperada.setDoctor(cita.getDoctor());
         citaRecuperada.setConsultorio(cita.getConsultorio());
         citaRecuperada.setEstado(cita.getEstado());
         citaRecuperada.setPrioridad(cita.getPrioridad());
         citaRecuperada.setMedicoId(cita.getMedicoId());
         citaRecuperada.setFechaYHora(cita.getFechaYHora());
-        citaRecuperada.setUsuario(cita.getUsuario());
         citaRecuperada.setUsuarioId(cita.getUsuarioId());
 
         return repositoryNeo.save(citaRecuperada);

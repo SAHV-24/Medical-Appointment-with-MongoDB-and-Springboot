@@ -3,6 +3,7 @@ package com.pauldirac.CrudNeo4J.MongoDB.Controller;
 import com.pauldirac.CrudNeo4J.MongoDB.Model.UsuarioModelNeo;
 import com.pauldirac.CrudNeo4J.MongoDB.Service.IUsuarioServiceNeo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +18,13 @@ public class UsuarioControllerNeo {
     @Autowired
     public UsuarioControllerNeo(IUsuarioServiceNeo usuarioService) {
         this.usuarioService = usuarioService;
+    }
+
+    @GetMapping("/obtenerTodos")
+    public ResponseEntity<List<UsuarioModelNeo>> obtenerTodosUsuarios() {
+
+        return new ResponseEntity<>(usuarioService.obtenerTodos(), HttpStatus.OK);
+
     }
 
     @PostMapping("/")
