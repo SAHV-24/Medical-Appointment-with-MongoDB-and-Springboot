@@ -1,13 +1,16 @@
 package com.pauldirac.CrudNeo4J.MongoDB.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.pauldirac.CrudNeo4J.MongoDB.Exception.UsuarioNotFoundException;
+import com.pauldirac.CrudNeo4J.MongoDB.Model.CitaModel;
 import com.pauldirac.CrudNeo4J.MongoDB.Model.UsuarioModel;
 import com.pauldirac.CrudNeo4J.MongoDB.Repository.IUsuarioRepository;
 
@@ -15,7 +18,10 @@ import com.pauldirac.CrudNeo4J.MongoDB.Repository.IUsuarioRepository;
 public class UsuarioService implements IUsuarioService {
 
     @Autowired
-    private IUsuarioRepository usuarioRepository; // Suponiendo que tienes un repositorio JPA para manejar UsuarioModel
+    private IUsuarioRepository usuarioRepository;
+
+    @Autowired
+    private ICitaService citaService;
 
     @Override
     public String crearUsuario(UsuarioModel usuario) {
@@ -86,18 +92,52 @@ public class UsuarioService implements IUsuarioService {
 
     @Override
     public String actualizarPrioridadPacientesMayores(List<String> condicionesEspeciales) {
+
         List<UsuarioModel> pacientes = usuarioRepository.findPacientesMayoresConCondiciones(condicionesEspeciales);
 
-        List<String> resultados = new ArrayList<>();
+        List<Map<String, String>> resultados = new ArrayList<>();
         for (UsuarioModel usuario : pacientes) {
             if (!usuario.getPrioridad().equals("Alta")) {
                 usuario.setPrioridad("Alta");
                 usuarioRepository.save(usuario);
-                resultados.add(usuario.getNombre());
+
+                Map<String, String> obj = new HashMap<String, String>();
+
+                obj.put("nombre", usuario.getNombre());
+                obj.put("eps", usuario.getEps());
+
+                resultados.add(obj);
+
+                List<CitaModel> citasDelUsuario = citaService.obtenerPorUsuarioId(usuario.getCedula());
+
+                for (CitaModel cita : citasDelUsuario) {
+
+                    cita.setPrioridad("Alta");
+                    citaService.actualizar(cita.get_id(), cita); // Actualiza todas las citas
+
+                }
+
             }
         }
 
-        return resultados.size() > 0 ? "Los usuarios que fueron actualizados fueron: \n " + resultados.toString()
-                : "Ningún usuario fue actualizado";
+        String res = "";
+
+        if (resultados.size() == 0)
+            res = "Ningún usuario fue actualizado";
+        else {
+
+            for (Map<String, String> result : resultados) {
+
+                res += "----------------------------------------------------------------------\n";
+                res += "El usuario " + result.get("nombre") + " de la EPS: " + result.get("eps") +"\n"
+                        + " fue modificado a ALTA prioridad.";
+                res += "----------------------------------------------------------------------\n";
+
+            }
+
+        }
+
+        return res;
+
     }
 }

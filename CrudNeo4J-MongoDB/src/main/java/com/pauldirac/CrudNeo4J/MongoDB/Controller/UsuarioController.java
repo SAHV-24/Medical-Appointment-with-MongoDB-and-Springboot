@@ -17,6 +17,30 @@ public class UsuarioController {
     @Autowired
     private IUsuarioService usuarioService;
 
+    // Buscar usuarios mayores de 65 años por EPS
+    @GetMapping("/mayores/{eps}")
+    public ResponseEntity<List<UsuarioModel>> buscarPorEpsMayores65(@PathVariable("eps") String eps) {
+        List<UsuarioModel> usuarios = usuarioService.buscarPorEpsMayores65(eps);
+        return ResponseEntity.ok(usuarios);
+    }
+
+    // Buscar usuarios por rango de edad y EPS
+    @GetMapping("/rango-edad/{edadMinima}/{edadMaxima}/{eps}")
+    public ResponseEntity<List<UsuarioModel>> buscarPorRangoEdadYEps(
+            @PathVariable("edadMinima") int edadMinima,
+            @PathVariable("edadMaxima") int edadMaxima,
+            @PathVariable("eps") String eps) {
+        List<UsuarioModel> usuarios = usuarioService.buscarPorRangoEdadYEps(edadMinima, edadMaxima, eps);
+        return ResponseEntity.ok(usuarios);
+    }
+
+    // Actualizar prioridad de pacientes mayores con condiciones especiales
+    @PutMapping("/prioridad")
+    public ResponseEntity<String> actualizarPrioridadPacientesMayores(@RequestBody List<String> condicionesEspeciales) {
+
+        return ResponseEntity.ok(usuarioService.actualizarPrioridadPacientesMayores(condicionesEspeciales));
+    }
+
     // Crear un nuevo usuario
     @PostMapping("/")
     public ResponseEntity<String> crearUsuario(@RequestBody UsuarioModel usuario) {
@@ -45,30 +69,6 @@ public class UsuarioController {
             @RequestBody UsuarioModel nuevoUsuario) {
         String resultado = usuarioService.actualizarUsuario(id, nuevoUsuario);
         return ResponseEntity.ok(resultado);
-    }
-
-    // Buscar usuarios mayores de 65 años por EPS
-    @GetMapping("/mayores/{eps}")
-    public ResponseEntity<List<UsuarioModel>> buscarPorEpsMayores65(@PathVariable("eps") String eps) {
-        List<UsuarioModel> usuarios = usuarioService.buscarPorEpsMayores65(eps);
-        return ResponseEntity.ok(usuarios);
-    }
-
-    // Buscar usuarios por rango de edad y EPS
-    @GetMapping("/rango-edad/{edadMinima}/{edadMaxima}/{eps}")
-    public ResponseEntity<List<UsuarioModel>> buscarPorRangoEdadYEps(
-            @PathVariable("edadMinima") int edadMinima,
-            @PathVariable("edadMaxima") int edadMaxima,
-            @PathVariable("eps") String eps) {
-        List<UsuarioModel> usuarios = usuarioService.buscarPorRangoEdadYEps(edadMinima, edadMaxima, eps);
-        return ResponseEntity.ok(usuarios);
-    }
-
-    // Actualizar prioridad de pacientes mayores con condiciones especiales
-    @PutMapping("/prioridad")
-    public ResponseEntity<String> actualizarPrioridadPacientesMayores(@RequestBody List<String> condicionesEspeciales) {
-        
-        return ResponseEntity.ok(usuarioService.actualizarPrioridadPacientesMayores(condicionesEspeciales));
     }
 
 }

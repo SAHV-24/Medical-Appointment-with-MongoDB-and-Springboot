@@ -14,11 +14,11 @@ public interface IUsuarioRepository extends MongoRepository<UsuarioModel, Object
 
        // 2. Consulta para pacientes mayores con condiciones especiales mejorada
        @Query("{ '$and': [ " +
-                     "  { 'condicionesEspeciales': { '$in': ?0 } }, " + "{'edad':{$gte:65}}" +
+                     "  { 'condicionesEspeciales': { '$in': ?0 } }, " + "{'edad':{$gt:65}}" +
                      "]}")
        List<UsuarioModel> findPacientesMayoresConCondiciones(List<String> condiciones);
 
        // 3. Consulta por EPS y mayores de 65 años corregida
-       @Query("{'edad': {'$gte': 65}, 'eps': ?0}")
+       @Query("{'edad': {'$gt': 65}, 'eps': ?0}")
        List<UsuarioModel> findByEpsAndMayores65(String eps);
 }

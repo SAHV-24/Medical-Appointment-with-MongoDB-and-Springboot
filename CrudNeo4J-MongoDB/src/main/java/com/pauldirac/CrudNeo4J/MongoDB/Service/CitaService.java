@@ -25,7 +25,6 @@ public class CitaService implements ICitaService {
         return citaRepository.findById(id);
     }
 
-  
     @Override
     public CitaModel guardar(CitaModel cita) {
         return citaRepository.save(cita);
@@ -34,14 +33,19 @@ public class CitaService implements ICitaService {
     @Override
     public Optional<CitaModel> actualizar(ObjectId id, CitaModel cita) {
         return citaRepository.findById(id)
-            .map(citaExistente -> {
-                cita.set_id(id);
-                return citaRepository.save(cita);
-            });
+                .map(citaExistente -> {
+                    cita.set_id(id);
+                    return citaRepository.save(cita);
+                });
     }
 
     @Override
     public void eliminar(ObjectId id) {
         citaRepository.deleteById(id);
+    }
+
+    @Override
+    public List<CitaModel> obtenerPorUsuarioId(Long usuarioId) {
+        return citaRepository.findByUsuarioId(usuarioId);
     }
 }

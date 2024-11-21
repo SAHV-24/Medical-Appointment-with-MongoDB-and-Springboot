@@ -10,7 +10,6 @@ import java.util.Optional;
 
 public interface ICitaRepository extends MongoRepository<CitaModel, ObjectId> {
     Optional<CitaModel> findByCitaId(Long citaId);
-    List<CitaModel> findByMedicoId(Long medicoId);
     List<CitaModel> findByUsuarioId(Long usuarioId);
     List<CitaModel> findByFechaYHoraBetween(Date inicio, Date fin);
     List<CitaModel> findByEstado(String estado);
