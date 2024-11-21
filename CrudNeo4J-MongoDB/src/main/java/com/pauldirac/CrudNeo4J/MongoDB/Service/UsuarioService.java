@@ -19,9 +19,12 @@ public class UsuarioService implements IUsuarioService {
 
     @Autowired
     private IUsuarioRepository usuarioRepository;
+<<<<<<< HEAD
 
     @Autowired
     private ICitaService citaService;
+=======
+>>>>>>> 8bca4f7de4ff64c8dd41fedbb1fb1ccc0e05f564
 
     @Override
     public String crearUsuario(UsuarioModel usuario) {
